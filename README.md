@@ -16,8 +16,7 @@ Before getting started, ensure you have the following components installed:
 terraform init
 terraform apply
 ```
-- Set up Ansible. Setting up Jenkins in docker container
+## Step 2: Set up Ansible. Setting up Jenkins in docker container
 ```
 ansible-playbook -i inventory.ini install_jenkins.yml
 ```
-4. 
