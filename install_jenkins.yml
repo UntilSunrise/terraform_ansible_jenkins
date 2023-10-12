@@ -1,0 +1,38 @@
+- name: Execute script in docker container
+  hosts: jenkins-nodes
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: Update package lists
+      raw: apt-get -y update
+      become: no
+
+    - name: Install Python
+      raw: apt-get -y install python3
+      become: no
+
+    - name: Create scripts directory
+      file:
+        path: /scripts
+        state: directory
+      become: no
+
+    - name: Copy a file to container
+      copy:
+        src: script.sh
+        dest: /scripts/script.sh
+      become: no
+
+    - name: Add executable rights
+      raw: chmod +x /scripts/script.sh
+      become: no
+
+    - name: Execute script in container
+      raw: /scripts/script.sh
+      become: no
+      register: script_result
+
+    - name: Show script results
+      debug:
+        var: script_result.stdout_lines
