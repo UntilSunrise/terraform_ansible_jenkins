@@ -20,3 +20,13 @@ terraform apply
 ```
 ansible-playbook -i inventory.ini install_jenkins.yml
 ```
+- When Jenkins setting up go to container:
+```
+docker exec -it jenkins_master /bin/bash
+```
+- Browse to  http://localhost:8080 and wait until the Unlock Jenkins page appears.
+- In Jenkins container show your password and copy it:
+```
+cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+- On the Unlock Jenkins page, paste this password into the Administrator password field and click Continue.
